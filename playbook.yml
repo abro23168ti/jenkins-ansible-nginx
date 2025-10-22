@@ -1,7 +1,7 @@
 ---
 - name: Install and run NGINX
   hosts: webservers
-  become: yes  # Menjadi root (sudo)
+  become: yes 
 
   tasks:
     - name: Update apt cache
