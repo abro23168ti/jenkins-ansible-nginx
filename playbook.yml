@@ -1,0 +1,21 @@
+---
+- name: Install and run NGINX
+  hosts: webservers
+  become: yes  # Menjadi root (sudo)
+
+  tasks:
+    - name: Update apt cache
+      ansible.builtin.apt:
+        update_cache: yes
+      changed_when: false
+
+    - name: Install NGINX
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+
+    - name: Ensure NGINX is started and enabled on boot
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: yes
